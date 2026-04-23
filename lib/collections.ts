@@ -1,54 +1,66 @@
 import type { Collection, Photo } from "./types"
 
-// Collection format mapping
-const collectionFormats: Record<string, string> = {
-  'grand-weddings': 'jpg',
-  'haldi-mehndi': 'jpg',
-  'corporate-events': 'jpg',
-  'premium-catering': 'jpg',
-  'venue-decor': 'jpg',
-  'outdoor-lawns': 'jpg'
-} as const
+// Randomly assigned provided filenames to event categories
+const imageMap: Record<string, string[]> = {
+  'grand-weddings': [
+    'WhatsApp Image 2026-04-05 at 1.44.16 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.18 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.19 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.22 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.33 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.35 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.37 PM.jpeg',
+    '20260212_193439.jpg (1).jpeg'
+  ],
+  'haldi-mehndi': [
+    'WhatsApp Image 2026-04-05 at 1.44.25 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.26 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.29 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.32 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.39 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.40 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.41 PM.jpeg'
+  ],
+  'outdoor-lawns': [
+    '20260212_193059.jpg.jpeg',
+    '20260212_193213.jpg.jpeg',
+    '20260212_193229.jpg.jpeg',
+    '20260212_193239.jpg.jpeg',
+    '20260212_195010.jpg (1).jpeg',
+    '20260212_195017.jpg (1).jpeg',
+    '20260212_195023.jpg.jpeg',
+    '20260212_195537.jpg (1).jpeg'
+  ],
+  'premium-catering': [
+    '20260212_193255.jpg (1).jpeg',
+    '20260212_193258.jpg (1).jpeg',
+    '20260212_193313.jpg (1).jpeg',
+    '20260212_193337.jpg (1).jpeg',
+    '20260212_193339.jpg (1).jpeg',
+    '20260212_193350.jpg (1).jpeg',
+    '20260212_193859.jpg (1).jpeg'
+  ],
+  'venue-decor': [
+    '20260212_193509.jpg.jpeg',
+    '20260212_193512.jpg (1).jpeg',
+    '20260212_193512.jpg (2).jpeg',
+    '20260212_193526.jpg.jpeg',
+    '20260212_193528.jpg.jpeg',
+    '20260212_193610.jpg.jpeg',
+    '20260212_193854.jpg (1).jpeg',
+    '20260212_193854.jpg (2).jpeg'
+  ],
+  'corporate-events': [
+    '20260212_193818.jpg (1).jpeg',
+    '20260212_193826.jpg (1).jpeg',
+    '20260212_193830.jpg (1).jpeg',
+    '20260212_193837.jpg (1).jpeg',
+    '20260212_193845.jpg (1).jpeg',
+    'asd.jpeg',
+    'X100-cover.webp'
+  ]
+}
 
-// Collection folder name mapping (for case sensitivity)
-const collectionFolders: Record<string, string> = {
-  'grand-weddings': 'Weddings',
-  'haldi-mehndi': 'Haldi',
-  'corporate-events': 'Corporate',
-  'premium-catering': 'Catering',
-  'venue-decor': 'Decor',
-  'outdoor-lawns': 'Lawns'
-} as const
-
-// Collection image counts and formats
-const collectionImages: Record<string, { count: number; formats: string[] }> = {
-  'grand-weddings': { 
-    count: 15,
-    formats: ['jpg']
-  },
-  'haldi-mehndi': { 
-    count: 12,
-    formats: ['jpg']
-  },
-  'corporate-events': { 
-    count: 10,
-    formats: ['jpg']
-  },
-  'premium-catering': { 
-    count: 14,
-    formats: ['jpg']
-  },
-  'venue-decor': { 
-    count: 16,
-    formats: ['jpg']
-  },
-  'outdoor-lawns': { 
-    count: 12,
-    formats: ['jpg']
-  }
-} as const
-
-// Common metadata for event photos
 const defaultMetadata = {
   camera: "Sony Alpha A7 IV",
   lens: "35mm f/1.4 G Master",
@@ -57,58 +69,38 @@ const defaultMetadata = {
   iso: "400",
   focalLength: "35mm",
   takenAt: new Date().toISOString().split("T")[0],
-} as const
+}
 
-// Aspect ratios for different image types
 const aspectRatios = [
-  { width: 1800, height: 1200 }, // 3:2
-  { width: 1800, height: 1350 }, // 4:3
-  { width: 1800, height: 1080 }, // 16:9
-  { width: 1200, height: 1800 }, // 2:3 (portrait)
-] as const
+  { width: 1800, height: 1200 },
+  { width: 1800, height: 1350 },
+  { width: 1800, height: 1080 },
+  { width: 1200, height: 1800 },
+]
 
-// Function to get images for a collection
 function getCollectionImages(collectionSlug: string): Photo[] {
-  // Get the proper folder name from our mapping instead of generating it
-  const folderName = collectionFolders[collectionSlug]
-  if (!folderName) return []
-
-  const collectionInfo = collectionImages[collectionSlug]
-  if (!collectionInfo) return []
-  
-  return Array.from({ length: collectionInfo.count }, (_, i) => {
-    const index = i + 1
-    const format = collectionFormats[collectionSlug] || 'jpg'
-    const imagePath = `/images/collections/${folderName}/${collectionSlug}-${index}.${format}`
+  const filenames = imageMap[collectionSlug] || []
+  return filenames.map((filename, index) => {
     const dimensions = aspectRatios[index % aspectRatios.length]
-
     return {
       id: `${collectionSlug}-${index}`,
-      src: imagePath,
+      src: `/${filename}`, // Files are in the root of public
       width: dimensions.width,
       height: dimensions.height,
-      alt: `Jauhri Farm House ${collectionSlug.replace('-', ' ')} image ${index}`,
+      alt: `Jauhri Farm House ${collectionSlug.replace('-', ' ')} image`,
       metadata: defaultMetadata,
     }
   })
 }
 
-// Function to get cover image path
-function getCoverImagePath(folderName: string): string {
-  // Using the new folder structure logic
-  return `/images/collections/${folderName}/cover.jpg`
-}
-
-// Collections data
-const collections: Collection[] = [
+export const collections: Collection[] = [
   {
     id: "1",
     slug: "grand-weddings",
     title: "Grand Weddings",
     description: "Royal wedding ceremonies and majestic receptions",
-    fullDescription:
-      "Experience the pinnacle of luxury with our grand wedding setups. From the sweeping entrance decor to the intricately designed stage backdrops in our banquet hall, we ensure every moment of your special day is framed in absolute elegance.",
-    coverImage: getCoverImagePath("Weddings"),
+    fullDescription: "Experience luxury in the heart of Moradabad[cite: 4]. We transform weddings into visual masterpieces.",
+    coverImage: "/WhatsApp Image 2026-04-05 at 1.43.01 PM.jpeg",
     tags: ["Weddings", "Reception", "Banquet"],
     featured: true,
     photos: getCollectionImages("grand-weddings"),
@@ -118,9 +110,8 @@ const collections: Collection[] = [
     slug: "haldi-mehndi",
     title: "Vibrant Haldi & Mehndi",
     description: "Colorful daytime rituals and intimate celebrations",
-    fullDescription:
-      "Our sprawling lawns provide the perfect canvas for vibrant, sunlit pre-wedding ceremonies. We craft intimate canopy setups with vivid floral arrangements to perfectly complement the joyous energy of Haldi and Mehndi rituals.",
-    coverImage: getCoverImagePath("Haldi"),
+    fullDescription: "Intimate and vibrant celebrations held at Khushhalpur, Civil Lines[cite: 4].",
+    coverImage: "/WhatsApp Image 2026-04-05 at 1.44.25 PM.jpeg",
     tags: ["Haldi", "Mehndi", "Daytime"],
     featured: true,
     photos: getCollectionImages("haldi-mehndi"),
@@ -130,9 +121,8 @@ const collections: Collection[] = [
     slug: "outdoor-lawns",
     title: "Outdoor Lawn Canopies",
     description: "Sweeping outdoor setups under the stars",
-    fullDescription:
-      "Transform your evening into a magical experience. Our expansive green lawns accommodate stunning overhead canopies, twinkling fairy lights, and spacious seating arrangements for massive gatherings and elite private parties.",
-    coverImage: getCoverImagePath("Lawns"),
+    fullDescription: "Our expansive green lawns in Moradabad offer the perfect starlit venue[cite: 4].",
+    coverImage: "/20260212_195610.jpg (1).jpeg",
     tags: ["Outdoor", "Lawn", "Canopy"],
     featured: true,
     photos: getCollectionImages("outdoor-lawns"),
@@ -142,9 +132,8 @@ const collections: Collection[] = [
     slug: "premium-catering",
     title: "Premium Catering Setups",
     description: "Exquisite culinary displays and mocktail bars",
-    fullDescription:
-      "A feast for the eyes and the palate. Browse our sophisticated buffet arrangements, featuring polished gold-accented chafing dishes, live-station zones, and beautifully illuminated mocktail bars designed for seamless service.",
-    coverImage: getCoverImagePath("Catering"),
+    fullDescription: "Sophisticated buffet and mocktail arrangements tailored to your event theme.",
+    coverImage: "/20260212_193339.jpg (1).jpeg",
     tags: ["Catering", "Food", "Bar"],
     featured: false,
     photos: getCollectionImages("premium-catering"),
@@ -154,9 +143,8 @@ const collections: Collection[] = [
     slug: "venue-decor",
     title: "Bespoke Venue Decor",
     description: "Meticulously crafted floral and lighting designs",
-    fullDescription:
-      "It is all in the details. Explore our meticulously styled venue elements, from dazzling geometric light tunnels and majestic floral entrances to premium plush seating and thematic color palettes tailored to your vision.",
-    coverImage: getCoverImagePath("Decor"),
+    fullDescription: "Meticulous styling from geometric light tunnels to majestic floral entrances.",
+    coverImage: "/20260212_193509.jpg.jpeg",
     tags: ["Decor", "Lighting", "Floral"],
     featured: false,
     photos: getCollectionImages("venue-decor"),
@@ -166,16 +154,14 @@ const collections: Collection[] = [
     slug: "corporate-events",
     title: "Corporate & Private Events",
     description: "Sophisticated setups for professional gatherings",
-    fullDescription:
-      "Jauhri Farm House offers a distinguished setting for corporate retreats, annual galas, and private elite gatherings. We provide versatile layouts that balance professional sophistication with premium hospitality.",
-    coverImage: getCoverImagePath("Corporate"),
+    fullDescription: "Distinguished settings for annual galas and private elite gatherings in Moradabad[cite: 4].",
+    coverImage: "/X100-cover.webp",
     tags: ["Corporate", "Private", "Events"],
     featured: false,
     photos: getCollectionImages("corporate-events"),
   },
 ]
 
-// Export functions
 export const getAllCollections = (): Collection[] => collections
 export const getFeaturedCollections = (): Collection[] => collections.filter(collection => collection.featured)
 export const getCollection = (slug: string): Collection | undefined => collections.find(collection => collection.slug === slug)

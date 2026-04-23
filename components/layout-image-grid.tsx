@@ -11,82 +11,66 @@ type Card = {
   thumbnail: string;
 };
 
-const SkeletonOne = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        Tokyo Nights
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Exploring the vibrant nightlife and neon-lit streets of Tokyo's urban landscape.
-      </p>
-    </div>
-  );
-};
+const SkeletonOne = () => (
+  <div>
+    <p className="font-old-london font-bold md:text-4xl text-xl text-white">Grand Weddings</p>
+    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+      Experience royal celebrations in our majestic banquet halls, tailored for perfection.
+    </p>
+  </div>
+);
 
-const SkeletonTwo = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        Urban Portraits
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Capturing the essence of city life through intimate street photography and urban portraiture.
-      </p>
-    </div>
-  );
-};
+const SkeletonTwo = () => (
+  <div>
+    <p className="font-old-london font-bold md:text-4xl text-xl text-white">Lush Green Lawns</p>
+    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+      Sprawling outdoor spaces for vibrant Haldi ceremonies and starlit receptions.
+    </p>
+  </div>
+);
 
-const SkeletonThree = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        New Zealand
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Documenting the raw beauty and untamed wilderness of New Zealand's landscapes.
-      </p>
-    </div>
-  );
-};
+const SkeletonThree = () => (
+  <div>
+    <p className="font-old-london font-bold md:text-4xl text-xl text-white">Exquisite Catering</p>
+    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+      A premium culinary journey with international and traditional cuisines.
+    </p>
+  </div>
+);
 
-const SkeletonFour = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        Iceland
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Capturing the ethereal beauty of Iceland's dramatic landscapes and natural wonders.
-      </p>
-    </div>
-  );
-};
+const SkeletonFour = () => (
+  <div>
+    <p className="font-old-london font-bold md:text-4xl text-xl text-white">Bespoke Decor</p>
+    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+      Transforming visions into reality with dazzling floral and lighting designs.
+    </p>
+  </div>
+);
 
 const cards = [
   {
     id: 1,
     content: <SkeletonOne />,
     className: "md:col-span-2",
-    thumbnail: "/Tokyo/tokyo-22.webp",
+    thumbnail: "/WhatsApp Image 2026-04-05 at 1.43.01 PM.jpeg",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
-    thumbnail: "/Urban Portraits/urban-portraits-1.jpg",
+    thumbnail: "/20260212_195610.jpg (1).jpeg",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
-    thumbnail: "/new zealand/new-zealand-18.jpg",
+    thumbnail: "/20260212_193339.jpg (1).jpeg",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
-    thumbnail: "/Iceland/iceland-1.jpg",
+    thumbnail: "/20260212_193509.jpg.jpeg",
   },
 ];
 
@@ -105,61 +89,60 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3 max-w-8xl mx-auto gap-4 relative">
+    <div className="w-full h-full p-4 md:p-10 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-6 relative">
       {cards.map((card, i) => (
-        <div key={i} className={cn(card.className, "")}>
+        <div key={i} className={cn(card.className, "min-h-[300px] md:min-h-[400px]")}>
           <motion.div
             onClick={() => handleClick(card)}
             className={cn(
               card.className,
-              "relative overflow-hidden",
+              "relative overflow-hidden border border-border/50 bg-secondary/20",
               selected?.id === card.id
-                ? "rounded-3xl cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
+                ? "rounded-3xl cursor-pointer absolute inset-0 h-[80vh] w-[90vw] md:w-[70vw] m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
-                ? "z-40 bg-white rounded-3xl h-full w-full"
-                : "bg-white rounded-3xl h-full w-full"
+                ? "z-40 bg-card rounded-3xl h-full w-full"
+                : "bg-card rounded-3xl h-full w-full"
             )}
             layoutId={`card-${card.id}`}
           >
             {selected?.id === card.id && <SelectedCard selected={selected} />}
-            <ImageComponent card={card} />
+            <ImageComponent card={card} isSelected={selected?.id === card.id} />
           </motion.div>
         </div>
       ))}
       <motion.div
         onClick={handleOutsideClick}
         className={cn(
-          "absolute h-full w-full left-0 top-0  opacity-0 z-10",
-          selected?.id ? "pointer-events-auto" : "pointer-events-none"
+          "fixed h-full w-full left-0 top-0 bg-black/80 z-10",
+          selected?.id ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         )}
-        animate={{ opacity: selected?.id ? 0.3 : 0 }}
+        animate={{ opacity: selected?.id ? 0.8 : 0 }}
       />
     </div>
   );
 };
 
-const ImageComponent = ({ card }: { card: Card }) => {
+const ImageComponent = ({ card, isSelected }: { card: Card; isSelected: boolean }) => {
   return (
     <motion.img
       layoutId={`image-${card.id}-image`}
       src={card.thumbnail}
-      height="500"
-      width="500"
       className={cn(
-        "object-cover object-top absolute inset-0 h-full w-full transition duration-200"
+        "absolute inset-0 h-full w-full transition duration-500",
+        isSelected ? "object-contain p-4" : "object-cover" // Contain when selected to see the WHOLE image
       )}
-      alt="thumbnail"
+      alt="JFH Venue Image"
     />
   );
 };
 
 const SelectedCard = ({ selected }: { selected: Card | null }) => {
   return (
-    <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-3xl shadow-2xl relative z-[60]">
+    <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-3xl relative z-[60]">
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
-        className="absolute inset-0 h-full w-full bg-black opacity-60 z-10"
+        animate={{ opacity: 0.4 }}
+        className="absolute inset-0 h-full w-full bg-gradient-to-t from-black via-transparent to-transparent z-10"
       />
       <motion.div
         layoutId={`content-${selected?.id}`}
@@ -167,7 +150,7 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="relative px-8 pb-4 z-[70]"
+        className="relative px-8 pb-10 z-[70]"
       >
         {selected?.content}
       </motion.div>
@@ -177,8 +160,8 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
 
 export function LayoutGridDemo() {
   return (
-    <div className="h-screen py-20 w-full">
+    <section className="min-h-screen py-20 w-full bg-background">
       <LayoutGrid cards={cards} />
-    </div>
+    </section>
   );
 }

@@ -3,7 +3,7 @@
 import { ContactFormData, ContactFormResponse } from './types'
 
 /**
- * Validates contact form data
+ * Validates booking/contact form data
  * @param data The form data to validate
  * @returns An array of error messages, empty if valid
  */
@@ -34,7 +34,7 @@ function validateContactForm(data: ContactFormData): string[] {
 }
 
 /**
- * Submits the contact form
+ * Submits the booking/contact form
  * @param data The form data to submit
  * @returns A response indicating success or failure
  */
@@ -55,13 +55,13 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactF
 
     return {
       success: true,
-      message: 'Thank you for your message! We will get back to you soon.'
+      message: 'Thank you for your inquiry! Our event planning team will get back to you shortly to discuss your celebration at Jauhri Farm House.'
     }
   } catch (error) {
     console.error('Error submitting contact form:', error)
     return {
       success: false,
-      message: 'An error occurred while submitting the form. Please try again later.'
+      message: 'An error occurred while submitting your inquiry. Please try again later or contact us directly by phone.'
     }
   }
 }

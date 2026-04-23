@@ -1,151 +1,142 @@
 const fs = require('fs');
 const path = require('path');
 
-// Collection image counts and formats
-const collectionImages: Record<string, { count: number; formats: string[] }> = {
-  'bali': { 
-    count: 16,
-    formats: ['jpeg', 'jpg']  // Bali has images in both formats
-  },
-  'morocco': { 
-    count: 21,  // Updated count based on actual files
-    formats: ['webp']
-  },
-  'tokyo': { 
-    count: 20,  // Updated count based on actual files
-    formats: ['jpg']
-  },
-  'new-zealand': { 
-    count: 18,
-    formats: ['jpg']
-  },
-  'iceland': { 
-    count: 14,
-    formats: ['jpg']
-  },
-  'urban-portraits': { 
-    count: 16,
-    formats: ['jpg']
-  }
-}
+// Updated categories for Jauhri Farm House
+const collectionSlugs = [
+  'grand-weddings',
+  'haldi-mehndi',
+  'outdoor-lawns',
+  'premium-catering',
+  'venue-decor',
+  'corporate-events'
+];
 
-// Collection format mapping for cover images
-const collectionFormats: Record<string, string> = {
-  'bali': 'jpeg',
-  'morocco': 'webp',
-  'tokyo': 'jpg',
-  'new-zealand': 'jpg',
-  'iceland': 'jpg',
-  'urban-portraits': 'jpg'
-}
+// The exact filenames mapping used in your lib/collections.ts
+const imageMap: Record<string, string[]> = {
+  'grand-weddings': [
+    'WhatsApp Image 2026-04-05 at 1.44.16 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.18 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.19 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.22 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.33 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.35 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.37 PM.jpeg',
+    '20260212_193439.jpg (1).jpeg'
+  ],
+  'haldi-mehndi': [
+    'WhatsApp Image 2026-04-05 at 1.44.25 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.26 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.29 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.32 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.39 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.40 PM.jpeg',
+    'WhatsApp Image 2026-04-05 at 1.44.41 PM.jpeg'
+  ],
+  'outdoor-lawns': [
+    '20260212_193059.jpg.jpeg',
+    '20260212_193213.jpg.jpeg',
+    '20260212_193229.jpg.jpeg',
+    '20260212_193239.jpg.jpeg',
+    '20260212_195010.jpg (1).jpeg',
+    '20260212_195017.jpg (1).jpeg',
+    '20260212_195023.jpg.jpeg',
+    '20260212_195537.jpg (1).jpeg'
+  ],
+  'premium-catering': [
+    '20260212_193255.jpg (1).jpeg',
+    '20260212_193258.jpg (1).jpeg',
+    '20260212_193313.jpg (1).jpeg',
+    '20260212_193337.jpg (1).jpeg',
+    '20260212_193339.jpg (1).jpeg',
+    '20260212_193350.jpg (1).jpeg',
+    '20260212_193859.jpg (1).jpeg'
+  ],
+  'venue-decor': [
+    '20260212_193509.jpg.jpeg',
+    '20260212_193512.jpg (1).jpeg',
+    '20260212_193512.jpg (2).jpeg',
+    '20260212_193526.jpg.jpeg',
+    '20260212_193528.jpg.jpeg',
+    '20260212_193610.jpg.jpeg',
+    '20260212_193854.jpg (1).jpeg',
+    '20260212_193854.jpg (2).jpeg'
+  ],
+  'corporate-events': [
+    '20260212_193818.jpg (1).jpeg',
+    '20260212_193826.jpg (1).jpeg',
+    '20260212_193830.jpg (1).jpeg',
+    '20260212_193837.jpg (1).jpeg',
+    '20260212_193845.jpg (1).jpeg',
+    'asd.jpeg',
+    'X100-cover.webp'
+  ]
+};
 
-// Collection folder name mapping (for case sensitivity)
-const collectionFolders: Record<string, string> = {
-  'bali': 'Bali',
-  'morocco': 'Morocco',
-  'tokyo': 'Tokyo',
-  'new-zealand': 'new zealand',
-  'iceland': 'Iceland',
-  'urban-portraits': 'Urban Portraits'
-}
+// Cover images assigned to each collection
+const collectionCovers: Record<string, string> = {
+  'grand-weddings': 'WhatsApp Image 2026-04-05 at 1.43.01 PM.jpeg',
+  'haldi-mehndi': 'WhatsApp Image 2026-04-05 at 1.44.25 PM.jpeg',
+  'outdoor-lawns': '20260212_195610.jpg (1).jpeg',
+  'premium-catering': '20260212_193339.jpg (1).jpeg',
+  'venue-decor': '20260212_193509.jpg.jpeg',
+  'corporate-events': 'X100-cover.webp'
+};
 
 interface ValidationResult {
   hasErrors: boolean
-  hasWarnings: boolean
   totalImages: number
   validatedImages: number
   errors: string[]
-  warnings: string[]
 }
 
 function validateImages(dryRun: boolean = false): ValidationResult {
   const publicDir = path.join(process.cwd(), 'public')
   const result: ValidationResult = {
     hasErrors: false,
-    hasWarnings: false,
     totalImages: 0,
     validatedImages: 0,
     errors: [],
-    warnings: []
   }
 
-  console.log('🔍 Starting image validation...')
+  console.log('🔍 Starting Jauhri Farm House image validation...')
   if (dryRun) {
     console.log('⚠️  Running in dry-run mode - will not fail the build\n')
   }
 
-  // Check each collection
-  Object.entries(collectionImages).forEach(([slug, info]) => {
-    const folderName = collectionFolders[slug]
-    console.log(`\n📁 Checking collection: ${folderName}`)
+  collectionSlugs.forEach((slug) => {
+    console.log(`\n📁 Validating Gallery: ${slug}`)
     
-    const collectionDir = path.join(publicDir, folderName)
-    
-    // Check if collection directory exists
-    if (!fs.existsSync(collectionDir)) {
-      const error = `Collection directory missing: ${folderName}`
-      result.errors.push(error)
-      console.error(`❌ ${error}`)
-      result.hasErrors = true
-      return
-    }
+    // 1. Validate Cover
+    const coverFile = collectionCovers[slug];
+    const coverPath = path.join(publicDir, coverFile);
+    result.totalImages++;
 
-    // Check cover image
-    const coverFormat = collectionFormats[slug]
-    const coverPath = path.join(collectionDir, `cover.${coverFormat}`)
     if (!fs.existsSync(coverPath)) {
-      const error = `Cover image missing: ${folderName}/cover.${coverFormat}`
-      result.errors.push(error)
-      console.error(`❌ ${error}`)
-      result.hasErrors = true
+      const error = `Cover image missing in /public: ${coverFile}`;
+      result.errors.push(error);
+      console.error(`❌ ${error}`);
+      result.hasErrors = true;
     } else {
-      console.log(`✅ Cover image found: ${folderName}/cover.${coverFormat}`)
-      result.validatedImages++
+      console.log(`✅ Cover found: ${coverFile}`);
+      result.validatedImages++;
     }
 
-    // Check collection images
-    for (let i = 1; i <= info.count; i++) {
-      result.totalImages++
-      let imageExists = false
-      let foundFormat = ''
-      
-      // For Bali, check both formats
-      if (slug === 'bali') {
-        const format = (i >= 10 && i <= 15) ? 'jpg' : 'jpeg'
-        const imagePath = path.join(collectionDir, `${slug}-${i}.${format}`)
-        if (fs.existsSync(imagePath)) {
-          imageExists = true
-          foundFormat = format
-        }
-      } else {
-        // For other collections, check their format
-        for (const format of info.formats) {
-          const imagePath = path.join(collectionDir, `${slug}-${i}.${format}`)
-          if (fs.existsSync(imagePath)) {
-            imageExists = true
-            foundFormat = format
-            break
-          }
-        }
-      }
+    // 2. Validate Photos
+    const photos = imageMap[slug] || [];
+    photos.forEach((filename) => {
+      result.totalImages++;
+      const photoPath = path.join(publicDir, filename);
 
-      if (!imageExists) {
-        const error = `Image missing: ${folderName}/${slug}-${i}.${info.formats[0]}`
-        result.errors.push(error)
-        console.error(`❌ ${error}`)
-        result.hasErrors = true
+      if (!fs.existsSync(photoPath)) {
+        const error = `Gallery image missing in /public: ${filename}`;
+        result.errors.push(error);
+        console.error(`❌ ${error}`);
+        result.hasErrors = true;
       } else {
-        result.validatedImages++
-        // Add warning for non-standard format
-        if (slug === 'bali' && foundFormat !== 'jpeg' && i < 10) {
-          const warning = `Warning: ${folderName}/${slug}-${i}.${foundFormat} uses non-standard format`
-          result.warnings.push(warning)
-          console.warn(`⚠️  ${warning}`)
-          result.hasWarnings = true
-        }
+        result.validatedImages++;
       }
-    }
-  })
+    });
+  });
 
   // Print summary
   console.log('\n📊 Validation Summary:')
@@ -153,31 +144,24 @@ function validateImages(dryRun: boolean = false): ValidationResult {
   console.log(`Images validated: ${result.validatedImages}`)
   console.log(`Missing images: ${result.totalImages - result.validatedImages}`)
   
-  if (result.hasWarnings) {
-    console.log(`\n⚠️  Warnings: ${result.warnings.length}`)
-    result.warnings.forEach(warning => console.log(`  - ${warning}`))
-  }
-
   if (result.hasErrors) {
     console.log(`\n❌ Errors: ${result.errors.length}`)
     result.errors.forEach(error => console.log(`  - ${error}`))
     
     if (!dryRun) {
-      console.error('\n❌ Image validation failed. Please fix the missing images before deploying.')
+      console.error('\n❌ Image validation failed. Please ensure all WhatsApp and JFH images are in the root of the /public folder.')
       process.exit(1)
     } else {
       console.log('\n⚠️  Dry run completed with errors. Build will continue.')
     }
   } else {
-    console.log('\n✅ All images validated successfully!')
+    console.log('\n✅ All JFH event images validated successfully!')
   }
 
   return result
 }
 
-// Parse command line arguments
 const args = process.argv.slice(2)
 const dryRun = args.includes('--dry-run')
 
-// Run the validation
-validateImages(dryRun) 
+validateImages(dryRun)

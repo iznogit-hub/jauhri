@@ -8,11 +8,11 @@ import { motion } from "framer-motion"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const IMAGES = [
-  "/images/collections/Farmhouse/cover.jpg",
-  "/images/collections/Farmhouse/banquet.jpg",
-  "/images/collections/Farmhouse/lawn.jpg",
-  "/images/collections/Farmhouse/catering.jpg",
-  "/images/collections/Farmhouse/entrance.jpg",
+  "/WhatsApp Image 2026-04-05 at 1.44.16 PM.jpeg",
+  "/20260212_193854.jpg (1).jpeg",
+  "/20260212_193239.jpg.jpeg",
+  "/WhatsApp Image 2026-04-05 at 1.44.32 PM.jpeg",
+  "/20260212_195537.jpg (1).jpeg",
 ]
 
 export function HeroGalleryScroll() {

@@ -37,7 +37,7 @@ export default function Home() {
       {/* Spacer for header */}
       <div className="header-height"></div>
 
-      {/* Hero Section with Slider */}
+      {/* Hero Section with Scroll Gallery */}
       <HeroGalleryScroll />
 
       {/* Introduction */}
@@ -72,9 +72,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Note: Update this image path to your best farmhouse cover photo */}
             <Image
-              src="/images/collections/Farmhouse/cover.jpg" 
+              src="/20260212_193439.jpg (2).jpeg" 
               alt="Jauhri Farm House Event Setting"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"
@@ -89,7 +88,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW: Venue Spaces & Services (Based on PDF) */}
+      {/* Venue Spaces & Services */}
       <section className="py-24 px-4 md:px-8 bg-secondary/30 border-y border-border">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -124,7 +123,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Layout Grid Section - Showcasing different event zones */}
+      {/* Gallery Section */}
       <div className="py-20">
         <motion.div
           className="text-center mb-8 px-4"
@@ -139,9 +138,8 @@ export default function Home() {
         <LayoutGridDemo />
       </div>
 
-       {/* Call to Action - Booking Inquiries */}
+       {/* Call to Action */}
       <section className="z-10 min-w-[90%] justify-self-center mr-4 ml-4 py-24 lg:my-20 sm:mt-0 sm:mb-20 px-4 md:px-8 rounded-[2.5rem] border border-accent/20 bg-card/80 backdrop-blur-md relative overflow-hidden">
-        {/* Decorative background element */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl"></div>
 
@@ -165,7 +163,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Featured Collections - Categorized by Event Type */}
+      {/* Featured Collections */}
       <section className="lg:mt-10 mb-32 px-4 md:px-8 z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div

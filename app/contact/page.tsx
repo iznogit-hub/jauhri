@@ -11,27 +11,30 @@ import { ArrowRight } from "lucide-react"
 export default function ContactPage() {
   return (
     <div className="min-h-screen">
-      {/* Spacer for header
-      <div className="header-height"></div> */}
+      {/* Spacer for header */}
+      <div className="header-height"></div>
 
        {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/images/collections/Farmhouse/cover.jpg"
-          alt="Contact Jauhri Farm House"
+          src="/WhatsApp Image 2026-04-05 at 1.43.01 PM.jpeg"
+          alt="Contact Jauhri Farm House Moradabad"
           fill
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/60" />
         <motion.div
           className="absolute inset-0 flex flex-col justify-center items-center text-center p-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">Contact Us</h1>
-          <p className="text-white/90 text-lg max-w-2xl">Let's bring your vision to life</p>
+          <h4 className="text-accent font-medium tracking-[0.2em] uppercase mb-4 text-sm md:text-base">
+            Moradabad
+          </h4>
+          <h1 className="text-4xl md:text-6xl text-white mb-4 font-old-london">Inquire Now</h1>
+          <p className="text-white/90 text-lg max-w-2xl font-light">Let our skilled professionals bring your vision to life</p>
         </motion.div>
       </section>
 
@@ -43,13 +46,13 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl mb-6">Get in Touch</h1>
-            <p className="text-primary/60 mb-8 max-w-md">
-              We are a one-stop destination for exceptional event planning and management. Contact our skilled professionals today to discuss your grand wedding or intimate gathering.
+            <h1 className="text-4xl md:text-5xl mb-6 font-old-london">Get in Touch</h1>
+            <p className="text-muted-foreground mb-8 max-w-md text-lg leading-relaxed">
+              Jauhri Farm House is a highly-rated event planning and management company. Our attention to detail ensures that every aspect of your event is flawlessly executed.
             </p>
 
             <motion.div
-              className="space-y-6 mb-8"
+              className="space-y-8 mb-12"
               initial="hidden"
               animate="visible"
               variants={{
@@ -65,14 +68,19 @@ export default function ContactPage() {
             >
               {[
                 {
-                  icon: <Mail className="text-primary mt-1" size={20} />,
-                  title: "Email",
+                  icon: <Mail className="text-accent mt-1" size={24} />,
+                  title: "Email Us",
                   content: "bookings@jauhrifarmhouse.com",
                 },
                 {
-                  icon: <MapPin className="text-primary mt-1" size={20} />,
-                  title: "Location",
+                  icon: <MapPin className="text-accent mt-1" size={24} />,
+                  title: "Our Location",
                   content: "Khushhalpur, Civil Lines, Moradabad-244001, Uttar Pradesh",
+                },
+                {
+                  icon: <Phone className="text-accent mt-1" size={24} />,
+                  title: "Call Us (Open 24 Hrs)",
+                  content: "+91 [Your Phone Number]",
                 },
               ].map((item) => (
                 <motion.div
@@ -85,8 +93,8 @@ export default function ContactPage() {
                 >
                   {item.icon}
                   <div>
-                    <h3 className="font-medium">{item.title}</h3>
-                    <p className="text-primary/60">{item.content}</p>
+                    <h3 className="font-semibold text-foreground text-lg">{item.title}</h3>
+                    <p className="text-muted-foreground text-lg">{item.content}</p>
                   </div>
                 </motion.div>
               ))}
@@ -97,27 +105,24 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <h3 className="text-xl mb-4">Keep Up To Date</h3>
-              <div className="flex flex-wrap gap-1">
+              <h3 className="text-xl mb-4 font-old-london tracking-wider">Social Channels</h3>
+              <div className="flex flex-wrap gap-2">
                 {[
-                  { icon: <Instagram size={26} />, label: "Instagram", href: "https://github.com/lilxyzz" },
-                  { icon: <Twitter size={26} />, label: "Twitter", href: "https://github.com/lilxyzz" },
-                  { icon: <Facebook size={26} />, label: "Facebook", href: "https://github.com/lilxyzz" },
-                  { icon: <Youtube size={26} />, label: "Youtube", href: "https://github.com/lilxyzz" },
-                  // { icon: <Linkedin size={20} />, label: "Linkedin", href: "https://linkedin.com" },
-                  { icon: <Github size={26} />, label: "Github", href: "https://github.com/lilxyzz" },
+                  { icon: <Instagram size={24} />, label: "Instagram", href: "https://github.com/lilxyzz" },
+                  { icon: <Twitter size={24} />, label: "Twitter", href: "https://github.com/lilxyzz" },
+                  { icon: <Facebook size={24} />, label: "Facebook", href: "https://github.com/lilxyzz" },
+                  { icon: <Youtube size={24} />, label: "Youtube", href: "https://github.com/lilxyzz" },
                 ].map((item) => (
                   <motion.a
                     key={item.label}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-primary-secondary rounded-full transition-colors"
+                    className="p-4 bg-secondary/50 rounded-full border border-border text-foreground hover:text-accent transition-all"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {item.icon}
-                    {/* <span className="text-primary-foreground dark:text-primary-foreground">{item.label}</span> */}
                   </motion.a>
                 ))}
               </div>
@@ -125,22 +130,32 @@ export default function ContactPage() {
           </motion.div>
 
           <motion.div
-            className="bg-primary dark:bg-primary-foreground p-8 rounded-2xl shadow-sm border border-border"
+            className="bg-card p-8 md:p-12 rounded-[2rem] shadow-soft border border-border"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-2xl mb-6">Send a Message</h2>
+            <h2 className="text-3xl mb-6 font-old-london">Inquiry Form</h2>
+            <p className="text-muted-foreground mb-8">
+              Fill out the form below and our team will contact you to discuss packages tailored to your budget and needs.
+            </p>
             <ContactForm />
           </motion.div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border-[1px] border-border">
+      <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-24 my-20 px-4 md:px-8 rounded-[2.5rem] border border-border bg-secondary/20">
         <div className="max-w-5xl mx-auto">
+          <motion.h4
+            className="text-accent text-center font-medium tracking-widest uppercase mb-3 text-sm"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            Inquiry Help
+          </motion.h4>
           <motion.h2
-            className="text-3xl text-center mb-12"
+            className="text-4xl md:text-5xl text-center mb-16 font-old-london"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -149,27 +164,27 @@ export default function ContactPage() {
             Frequently Asked Questions
           </motion.h2>
 
-          <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
             {[
               {
-                question: "What are your operating hours?",
+                question: "What are the venue's operating hours?",
                 answer:
-                  "We are open 24 hours a day, 7 days a week. Our team is always accessible and available to answer any queries or concerns you may have.",
+                  "Jauhri Farm House is open 24 hours a day, 7 days a week. Our team is always accessible to answer any queries or concerns clients may have.",
               },
               {
-                question: "Do you offer customizable event packages?",
+                question: "Do you offer customizable event themes?",
                 answer:
-                  "Yes, we offer a variety of packages tailored to meet different needs and budgets. Our team provides customizable options to match any event's theme and style.",
+                  "Yes. We have a team of skilled professionals that provide customizable options to match any event's theme and style, ensuring every detail is flawlessly executed.",
               },
               {
-                question: "Do you provide event planners and wedding organizers?",
+                question: "Are there specific packages for weddings?",
                 answer:
-                  "Absolutely. We have a dedicated team of skilled professionals, including expert Wedding Organisers, to ensure every aspect of your event is flawlessly executed.",
+                  "We offer a variety of packages tailored to meet different needs and budgets. Detailed pricing and package information can be found in our service catalogue.",
               },
               {
-                question: "What types of events do you host?",
+                question: "Is Jauhri Farm House a one-stop destination?",
                 answer:
-                  "We cater to a comprehensive range of events, whether you are planning a grand wedding celebration or an intimate private gathering.",
+                  "Absolutely. For those looking for exceptional event planning and management, we are the perfect one-stop destination in Moradabad, from catering to decor.",
               },
             ].map((item, index) => (
               <motion.div
@@ -179,8 +194,8 @@ export default function ContactPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="font-medium text-xl mb-2">{item.question}</h3>
-                <p className="text-primary/60">{item.answer}</p>
+                <h3 className="font-semibold text-xl mb-3 text-foreground">{item.question}</h3>
+                <p className="text-muted-foreground text-lg leading-relaxed">{item.answer}</p>
               </motion.div>
             ))}
           </div>
@@ -188,23 +203,23 @@ export default function ContactPage() {
       </section>
 
         {/* Featured Collections */}
-      <section className="mt-20 mb-20 py-20 px-4 md:px-8">
+      <section className="mb-32 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4">Event Galleries</h2>
-            <p className="text-primary max-w-2xl mx-auto">
-              Explore some of our most memorable weddings and corporate events hosted at our venue.
+            <h2 className="text-3xl md:text-5xl mb-4 font-old-london">Event Galleries</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+              Experience the grandeur of weddings and corporate gatherings hosted at Jauhri Farm House.
             </p>
           </motion.div>
           <FeaturedCollections />
           <motion.div
-            className="text-center mt-12"
+            className="text-center mt-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

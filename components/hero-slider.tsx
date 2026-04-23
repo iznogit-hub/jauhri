@@ -10,18 +10,11 @@ interface Slide {
 }
 
 export default function HeroSlider() {
-  const slides: Slide[] = [
-    {
-      image: "/images/collections/Farmhouse/cover.jpg",
-    },
-    {
-      // Note: Update with a photo of the banquet hall
-      image: "/images/collections/Farmhouse/banquet.jpg",
-    },
-    {
-      // Note: Update with a photo of the outdoor lawn canopy
-      image: "/images/collections/Farmhouse/lawn.jpg",
-    },
+ 
+  const slides = [
+    { image: "/WhatsApp Image 2026-04-05 at 1.43.01 PM.jpeg" },
+    { image: "/20260212_193439.jpg.jpeg" },
+    { image: "/20260212_195610.jpg (1).jpeg" },
   ]
 
   const [currentSlide, setCurrentSlide] = useState(0)
