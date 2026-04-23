@@ -8,7 +8,6 @@ import FeaturedCollections from "@/components/featured-collections"
 import AnimatedButton from "@/components/animated-button"
 import { ArrowRight } from "lucide-react"
 
-
 export default function ContactPage() {
   return (
     <div className="min-h-screen">
@@ -18,8 +17,8 @@ export default function ContactPage() {
        {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/new zealand/new-zealand-17.jpg?height=800&width=1920"
-          alt="Contact X100"
+          src="/images/collections/Farmhouse/cover.jpg"
+          alt="Contact Jauhri Farm House"
           fill
           priority
           className="object-cover"
@@ -31,8 +30,8 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">Contact</h1>
-          <p className="text-white/90 text-lg max-w-2xl">Part of your vision</p>
+          <h1 className="text-4xl md:text-5xl text-white mb-4">Contact Us</h1>
+          <p className="text-white/90 text-lg max-w-2xl">Let's bring your vision to life</p>
         </motion.div>
       </section>
 
@@ -46,7 +45,7 @@ export default function ContactPage() {
           >
             <h1 className="text-4xl md:text-5xl mb-6">Get in Touch</h1>
             <p className="text-primary/60 mb-8 max-w-md">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+              We are a one-stop destination for exceptional event planning and management. Contact our skilled professionals today to discuss your grand wedding or intimate gathering.
             </p>
 
             <motion.div
@@ -68,12 +67,12 @@ export default function ContactPage() {
                 {
                   icon: <Mail className="text-primary mt-1" size={20} />,
                   title: "Email",
-                  content: "contact@x100.com",
+                  content: "bookings@jauhrifarmhouse.com",
                 },
                 {
                   icon: <MapPin className="text-primary mt-1" size={20} />,
                   title: "Location",
-                  content: "31.9514° S, 115.8617° E",
+                  content: "Khushhalpur, Civil Lines, Moradabad-244001, Uttar Pradesh",
                 },
               ].map((item) => (
                 <motion.div
@@ -153,24 +152,24 @@ export default function ContactPage() {
           <div className="space-y-8">
             {[
               {
-                question: "Do you offer prints of your photographs?",
+                question: "What are your operating hours?",
                 answer:
-                  "Yes, most of my photographs are available as fine art prints. You can inquire about specific images through the contact form.",
+                  "We are open 24 hours a day, 7 days a week. Our team is always accessible and available to answer any queries or concerns you may have.",
               },
               {
-                question: "Are you available for commercial photography?",
+                question: "Do you offer customizable event packages?",
                 answer:
-                  "Absolutely. I work with brands and publications on commercial projects. Please reach out with details about your project for a custom quote.",
+                  "Yes, we offer a variety of packages tailored to meet different needs and budgets. Our team provides customizable options to match any event's theme and style.",
               },
               {
-                question: "Do you offer photography workshops?",
+                question: "Do you provide event planners and wedding organizers?",
                 answer:
-                  "Yes, I regularly host workshops both in-person and online. Join my newsletter to be notified when new workshop dates are announced.",
+                  "Absolutely. We have a dedicated team of skilled professionals, including expert Wedding Organisers, to ensure every aspect of your event is flawlessly executed.",
               },
               {
-                question: "Can I license your photos for my website/publication?",
+                question: "What types of events do you host?",
                 answer:
-                  "Yes, licensing options are available for both digital and print use. Please contact me with details about your intended use for licensing information.",
+                  "We cater to a comprehensive range of events, whether you are planning a grand wedding celebration or an intimate private gathering.",
               },
             ].map((item, index) => (
               <motion.div
@@ -198,9 +197,9 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4">Featured Collections</h2>
+            <h2 className="text-3xl md:text-4xl mb-4">Event Galleries</h2>
             <p className="text-primary max-w-2xl mx-auto">
-              Explore some of my most popular photography collections from around the world
+              Explore some of our most memorable weddings and corporate events hosted at our venue.
             </p>
           </motion.div>
           <FeaturedCollections />

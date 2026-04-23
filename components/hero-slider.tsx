@@ -12,13 +12,15 @@ interface Slide {
 export default function HeroSlider() {
   const slides: Slide[] = [
     {
-      image: "/placeholder.svg?height=1080&width=1920",
+      image: "/images/collections/Farmhouse/cover.jpg",
     },
     {
-      image: "/placeholder.svg?height=1080&width=1920",
+      // Note: Update with a photo of the banquet hall
+      image: "/images/collections/Farmhouse/banquet.jpg",
     },
     {
-      image: "/placeholder.svg?height=1080&width=1920",
+      // Note: Update with a photo of the outdoor lawn canopy
+      image: "/images/collections/Farmhouse/lawn.jpg",
     },
   ]
 
@@ -81,7 +83,7 @@ export default function HeroSlider() {
           <div className="relative h-full w-full">
             <Image
               src={slides[currentSlide].image || "/placeholder.svg"}
-              alt="Hero image"
+              alt="Jauhri Farm House Venue"
               fill
               priority
               className="object-cover"
@@ -93,12 +95,14 @@ export default function HeroSlider() {
 
       {/* Static text content that doesn't change with slides */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4 z-10">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl text-white mb-6">
-          Capturing Moments Around the World
+        <h4 className="text-accent font-medium tracking-[0.2em] uppercase mb-4 text-sm md:text-base drop-shadow-md">
+          Est. Moradabad
+        </h4>
+        <h1 className="text-5xl md:text-7xl lg:text-8xl text-white mb-6 font-old-london drop-shadow-lg">
+          Jauhri Farm House
         </h1>
-        <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8">
-          Professional photography showcasing the beauty of nature, urban landscapes, and cultural moments from across
-          the globe.
+        <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 font-light drop-shadow-md">
+          Moradabad's premier destination for grand weddings, luxury receptions, and unforgettable celebrations.
         </p>
       </div>
 

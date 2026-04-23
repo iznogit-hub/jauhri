@@ -24,7 +24,7 @@ export function CollectionContent({ collection }: Props) {
       {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src={collection.coverImage || "/Morocco/morocco-8.webp?height=800&width=1920"}
+          src={collection.coverImage || "/images/collections/Farmhouse/cover.jpg"}
           alt={collection.title}
           fill
           priority
@@ -72,9 +72,9 @@ export function CollectionContent({ collection }: Props) {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4">Featured Collections</h2>
+            <h2 className="text-3xl md:text-4xl mb-4">More Event Galleries</h2>
             <p className="text-primary max-w-2xl mx-auto">
-              Explore some of my most popular photography collections from around the world
+              Explore more of our spectacular event galleries and venue spaces hosted at Jauhri Farm House.
             </p>
           </motion.div>
           <FeaturedCollections />
@@ -86,11 +86,11 @@ export function CollectionContent({ collection }: Props) {
             viewport={{ once: true }}
           >
             <AnimatedButton href="/showcase" variant="primary" icon={<ArrowRight size={18} />}>
-              View All Collections
+              View All Galleries
             </AnimatedButton>
           </motion.div>
         </div>
       </section>
     </div>
   )
-} 
+}

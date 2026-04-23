@@ -6,11 +6,10 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./theme-toggle"
-import Logo from "./logo"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Showcase", href: "/showcase" },
+  { name: "Galleries", href: "/showcase" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ]
@@ -62,36 +61,33 @@ export default function Header() {
   return (
     <header
       className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height ${
-        isScrolled ? "bg-background backdrop-blur-md shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm border border-border/50" : "bg-transparent"
       } ${!isVisible ? "-translate-y-[80px]" : "translate-y-0"}`}
     >
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full">
         <div className="flex justify-between items-center h-full">
           {/* Logo and Brand */}
           <div className="flex-shrink-0 flex items-center gap-3">
-            {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-old-london p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
-                isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
+              className={`font-old-london p-3 text-3xl tracking-widest flex items-center justify-center rounded-full transition-colors ${
+                isScrolled || pathname !== "/" ? "text-foreground" : "text-foreground drop-shadow-md"
               }`}
             >
-              X100
+              JFH
             </Link>
           </div>
         
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors">
+          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 h-10 rounded-full bg-background/90 border border-border shadow-soft transition-colors">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={`${
-                  pathname === item.href ? "text-primary font-medium border-b-[1px] border-border" : "hover:text-primary/80"
-                } ${
-                  isScrolled || pathname !== "/" ? "text-foreground" : "text-primary"
-                } px-1 py-2 text-sm transition-colors`}
+                  pathname === item.href ? "text-accent font-medium border-b-[1px] border-accent" : "hover:text-accent/80"
+                } text-foreground px-2 py-1 text-sm tracking-wider uppercase transition-colors`}
               >
                 {item.name}
               </Link>
@@ -104,11 +100,11 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background text-primary transition-colors">
+          <div className="md:hidden flex items-center justify-center rounded-full bg-background/90 border border-border shadow-soft transition-colors">
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"
-              className={`${isScrolled || pathname !== "/" ? "text-primary" : "text-primary"} p-2`}
+              className={`text-foreground p-2`}
               onClick={() => setIsMenuOpen(true)}
             >
               <span className="sr-only">Open menu</span>
@@ -126,33 +122,33 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-0 z-[100] bg-primary-foreground backdrop-blur-lg flex flex-col min-h-screen rounded-3xl border-border border-[1px] "
+            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-lg flex flex-col min-h-screen rounded-3xl border-border border-[1px] "
           >
             <div className="p-4 flex justify-end">
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 type="button"
-                className="text-foreground p-2"
+                className="text-foreground p-2 bg-secondary rounded-full"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
                 <X className="h-6 w-6" aria-hidden="true" />
               </motion.button>
             </div>
-            <nav className="flex-1 flex flex-col items-center pt-32">
+            <nav className="flex-1 flex flex-col items-center pt-24 space-y-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-4 py-3 text-3xl font-old-london ${
-                    pathname === item.href ? "text-primary font-medium" : "text-foreground hover:text-primary/80"
+                  className={`block px-4 py-3 text-4xl font-old-london tracking-wider ${
+                    pathname === item.href ? "text-accent font-medium" : "text-foreground hover:text-accent"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="mt-4">
+              <div className="mt-8">
                 <ThemeToggle />
               </div>
             </nav>

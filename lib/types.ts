@@ -1,5 +1,5 @@
 /**
- * Represents a photo in the gallery
+ * Represents an event or venue photo in the gallery
  */
 export interface Photo {
   /** Unique identifier for the photo */
@@ -17,7 +17,7 @@ export interface Photo {
 }
 
 /**
- * Technical metadata for a photo
+ * Technical metadata for a venue photo
  */
 export interface PhotoMetadata {
   /** Camera model used */
@@ -37,7 +37,7 @@ export interface PhotoMetadata {
 }
 
 /**
- * Represents a photo collection
+ * Represents an event gallery collection (e.g., Weddings, Corporate)
  */
 export interface Collection {
   /** Unique identifier for the collection */
@@ -61,7 +61,7 @@ export interface Collection {
 }
 
 /**
- * Contact form data
+ * Booking inquiry and contact form data
  */
 export interface ContactFormData {
   /** Name of the person contacting */
