@@ -73,7 +73,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-7xl text-white font-old-london mb-6"
+            className="text-4xl md:text-7xl text-white font-impact mb-6"
           >
             Jauhri Farm House
           </motion.h1>
@@ -93,7 +93,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h4 className="text-accent font-medium tracking-widest uppercase mb-3 text-sm">Welcome to JFH</h4>
-            <h2 className="text-3xl md:text-5xl mb-6 text-foreground font-old-london">
+            <h2 className="text-3xl md:text-5xl mb-6 text-foreground font-impact">
               Experience Luxury at Jauhri Farm House
             </h2>
             <div className="h-1 w-20 bg-accent mb-6 rounded-full"></div>
@@ -126,7 +126,7 @@ export default function Home() {
             </video>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <div className="absolute bottom-8 left-8">
-              <h3 className="text-white text-2xl font-old-london tracking-wider">JFH</h3>
+              <h3 className="text-white text-2xl font-impact tracking-wider">JFH</h3>
               <p className="text-white/80">Moradabad</p>
             </div>
           </motion.div>
@@ -144,7 +144,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h4 className="text-accent font-medium tracking-widest uppercase mb-3 text-sm">Our Spaces</h4>
-            <h2 className="text-3xl md:text-4xl text-foreground font-old-london">A Canvas for Every Celebration</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground font-impact">A Canvas for Every Celebration</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -178,7 +178,7 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <h4 className="text-accent font-medium tracking-widest uppercase mb-3 text-sm">Gallery</h4>
-          <h2 className="text-3xl md:text-4xl text-foreground font-old-london">Moments Frozen in Time</h2>
+          <h2 className="text-3xl md:text-4xl text-foreground font-impact">Moments Frozen in Time</h2>
         </motion.div>
         <LayoutGridDemo />
       </div>
@@ -203,7 +203,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-foreground text-4xl md:text-5xl mb-6 font-old-london">Plan Your Dream Event</h2>
+          <h2 className="text-foreground text-4xl md:text-5xl mb-6 font-impact">Plan Your Dream Event</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-2 text-lg">
             Khushhalpur, Civil Lines, Moradabad, Uttar Pradesh 244001
           </p>
@@ -235,7 +235,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h4 className="text-accent font-medium tracking-widest uppercase mb-3 text-sm">Portfolios</h4>
-            <h2 className="text-foreground text-3xl md:text-4xl mb-4 font-old-london">Event Galleries</h2>
+            <h2 className="text-foreground text-3xl md:text-4xl mb-4 font-impact">Event Galleries</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               A glimpse into the grand weddings, vibrant haldi ceremonies, and elite corporate gatherings hosted at Jauhri Farm House.
             </p>

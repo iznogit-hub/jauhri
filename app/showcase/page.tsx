@@ -29,7 +29,7 @@ export default function ShowcasePage() {
           <h4 className="text-accent font-medium tracking-[0.2em] uppercase mb-4 text-sm md:text-base">
             The Gallery
           </h4>
-          <h1 className="text-4xl md:text-6xl text-white mb-4 font-old-london tracking-wider">Event Galleries</h1>
+          <h1 className="text-4xl md:text-6xl text-white mb-4 font-impact tracking-wider">Event Galleries</h1>
           <p className="text-white/90 text-lg max-w-2xl font-light">
             Explore our curated collections of grand weddings, vibrant ceremonies, and elite celebrations hosted at Jauhri Farm House.
           </p>
@@ -44,7 +44,7 @@ export default function ShowcasePage() {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <div className="flex flex-col items-center mb-8">
-          <h2 className="text-2xl font-old-london mb-6 text-foreground">Filter by Event Type</h2>
+          <h2 className="text-2xl font-impact mb-6 text-foreground">Filter by Event Type</h2>
           <TagFilters />
         </div>
       </motion.section>
