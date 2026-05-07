@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Mail, MapPin, Phone, Instagram, Twitter, Facebook, Youtube, Linkedin, Github } from "lucide-react"
+import { Mail, MapPin, Phone, Instagram, Twitter, Facebook, Youtube } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
 import { motion } from "framer-motion"
 import FeaturedCollections from "@/components/featured-collections"
@@ -70,7 +70,7 @@ export default function ContactPage() {
                 {
                   icon: <Mail className="text-accent mt-1" size={24} />,
                   title: "Email Us",
-                  content: "bookings@jauhrifarmhouse.com",
+                  content: "praveerkumar1389@gmail.com",
                 },
                 {
                   icon: <MapPin className="text-accent mt-1" size={24} />,
@@ -80,7 +80,7 @@ export default function ContactPage() {
                 {
                   icon: <Phone className="text-accent mt-1" size={24} />,
                   title: "Call Us (Open 24 Hrs)",
-                  content: "+91 [Your Phone Number]",
+                  content: "+91 94122 44341", // Place your primary contact number here
                 },
               ].map((item) => (
                 <motion.div
@@ -108,10 +108,10 @@ export default function ContactPage() {
               <h3 className="text-xl mb-4 font-old-london tracking-wider">Social Channels</h3>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { icon: <Instagram size={24} />, label: "Instagram", href: "https://github.com/lilxyzz" },
-                  { icon: <Twitter size={24} />, label: "Twitter", href: "https://github.com/lilxyzz" },
-                  { icon: <Facebook size={24} />, label: "Facebook", href: "https://github.com/lilxyzz" },
-                  { icon: <Youtube size={24} />, label: "Youtube", href: "https://github.com/lilxyzz" },
+                  { icon: <Instagram size={24} />, label: "Instagram", href: "https://www.instagram.com/jauhrifarmhouse?igsh=enR3eGU0OGRvdnA2" },
+                  { icon: <Twitter size={24} />, label: "Twitter", href: "#" },
+                  { icon: <Facebook size={24} />, label: "Facebook", href: "#" },
+                  { icon: <Youtube size={24} />, label: "Youtube", href: "#" },
                 ].map((item) => (
                   <motion.a
                     key={item.label}

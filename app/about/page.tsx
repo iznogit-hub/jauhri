@@ -27,7 +27,7 @@ export default function AboutPage() {
           <h4 className="text-accent font-medium tracking-[0.2em] uppercase mb-4 text-sm md:text-base drop-shadow-md">
             Our Story
           </h4>
-          <h1 className="text-4xl md:text-6xl text-white mb-4 font-old-london tracking-wider">About The Venue</h1>
+          <h1 className="text-4xl md:text-6xl text-white mb-4 font-impact tracking-wider">About The Venue</h1>
           <p className="text-white/90 text-lg max-w-2xl font-light">Crafting unforgettable moments in Moradabad</p>
         </motion.div>
       </section>
@@ -56,7 +56,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl mb-6 font-old-london">The JFH Legacy</h2>
+            <h2 className="text-3xl md:text-5xl mb-6 font-impact">The JFH Legacy</h2>
             <div className="h-1 w-20 bg-accent mb-6 rounded-full"></div>
             <p className="text-muted-foreground mb-4 text-lg leading-relaxed">
               Jauhri Farm House is Moradabad's premier one-stop destination for exceptional event planning and management. We believe that every celebration deserves a breathtaking backdrop and flawless execution.
@@ -100,7 +100,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h4 className="text-accent font-medium tracking-widest uppercase mb-3 text-sm">Our Commitment</h4>
-            <h2 className="text-4xl md:text-5xl font-old-london">The JFH Standard</h2>
+            <h2 className="text-4xl md:text-5xl font-impact">The JFH Standard</h2>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -147,7 +147,7 @@ export default function AboutPage() {
           viewport={{ once: true }}
         >
           <h4 className="text-accent font-medium tracking-widest uppercase mb-3 text-sm">Experience</h4>
-          <h2 className="text-4xl md:text-5xl font-old-london">Venue Highlights</h2>
+          <h2 className="text-4xl md:text-5xl font-impact">Venue Highlights</h2>
         </motion.div>
         
         <div className="space-y-12">
@@ -192,7 +192,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               <div className="md:w-1/6">
-                <h3 className="text-4xl font-old-london text-accent">{item.category}</h3>
+                <h3 className="text-4xl font-impact text-accent">{item.category}</h3>
               </div>
               <div className="md:w-5/6 pb-12 border-b border-border/50">
                 <h4 className="font-semibold text-2xl mb-3 text-foreground">{item.title}</h4>
@@ -215,7 +215,7 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-foreground text-4xl md:text-5xl mb-6 font-old-london">Ready to Celebrate?</h2>
+          <h2 className="text-foreground text-4xl md:text-5xl mb-6 font-impact">Ready to Celebrate?</h2>
           <p className="text-foreground max-w-2xl mx-auto mb-10 text-xl font-light">
             Whether you are planning a grand wedding or an intimate private gathering, our team is ready to bring your vision to life.
           </p>

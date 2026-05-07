@@ -1,11 +1,9 @@
 "use client"
 
-import { ArrowRight, Trees, Building, UtensilsCrossed, Sparkles } from "lucide-react"
+import { ArrowRight, Trees, Building, UtensilsCrossed, Sparkles, Phone } from "lucide-react"
 import FeaturedCollections from "@/components/featured-collections"
 import AnimatedButton from "@/components/animated-button"
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { HeroGalleryScroll } from "@/components/hero-gallery-scroll"
 import { LayoutGridDemo } from "@/components/layout-image-grid"
 
 export default function Home() {
@@ -33,14 +31,59 @@ export default function Home() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      {/* Floating Call Button */}
+      <motion.a
+        href="tel:+918130184516"
+        className="fixed bottom-8 right-8 z-50 bg-accent text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ rotate: 10 }}
+      >
+        <Phone size={28} fill="currentColor" />
+      </motion.a>
+
       {/* Spacer for header */}
       <div className="header-height"></div>
 
-      {/* Hero Section with Scroll Gallery */}
-      <HeroGalleryScroll />
+      {/* Hero Section - With Dark Brown Overlay */}
+      <section className="relative h-[80vh] w-full overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/1.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Dark Brown Overlay at 50% Opacity */}
+        <div className="absolute inset-0 bg-[#241405]/50 z-0" />
 
-      {/* Introduction */}
+        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+          <motion.h4 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-accent font-medium tracking-widest uppercase mb-4 text-sm md:text-base"
+          >
+            Moradabad
+          </motion.h4>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-7xl text-white font-old-london mb-6"
+          >
+            Jauhri Farm House
+          </motion.h1>
+          <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
+            Check Availability
+          </AnimatedButton>
+        </div>
+      </section>
+
+      {/* Introduction - Video 2.mp4 */}
       <section id="introduction" className="mt-32 mb-20 sm:py-0 py-20 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -72,13 +115,15 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Image
-              src="/20260212_193439.jpg (2).jpeg" 
-              alt="Jauhri Farm House Event Setting"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              priority
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/2.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <div className="absolute bottom-8 left-8">
               <h3 className="text-white text-2xl font-old-london tracking-wider">JFH</h3>
@@ -138,10 +183,18 @@ export default function Home() {
         <LayoutGridDemo />
       </div>
 
-       {/* Call to Action */}
-      <section className="z-10 min-w-[90%] justify-self-center mr-4 ml-4 py-24 lg:my-20 sm:mt-0 sm:mb-20 px-4 md:px-8 rounded-[2.5rem] border border-accent/20 bg-card/80 backdrop-blur-md relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl"></div>
+       {/* Call to Action - Video 3.mp4 */}
+      <section className="z-10 min-w-[90%] justify-self-center mr-4 ml-4 py-24 lg:my-20 sm:mt-0 sm:mb-20 px-4 md:px-8 rounded-[2.5rem] border border-accent/20 relative overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/3.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-card/85 backdrop-blur-sm"></div>
 
         <motion.div
           className="max-w-4xl mx-auto text-center relative z-10"
@@ -157,9 +210,17 @@ export default function Home() {
           <p className="text-foreground max-w-2xl mx-auto mb-10 text-xl font-light">
             Ready to host an unforgettable celebration? Contact our team for personalized packages, catering options, and venue tours.
           </p>
-          <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
-            Check Availability
-          </AnimatedButton>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
+              Check Availability
+            </AnimatedButton>
+            <a 
+              href="tel:+918130184516" 
+              className="flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors py-2 px-4"
+            >
+              <Phone size={18} /> +91 8130184516
+            </a>
+          </div>
         </motion.div>
       </section>
 
